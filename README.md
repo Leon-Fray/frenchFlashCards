@@ -1,5 +1,6 @@
-🇫🇷 #frenchFlashCards
+ <h1>🇫🇷frenchFlashCards</h1>
 
+<h2>
 A lightweight and simple web app built with HTML and JavaScript to help me study French — right in the browser!
 
 
@@ -11,3 +12,4 @@ A lightweight and simple web app built with HTML and JavaScript to help me study
 🔊 Built-in French text-to-speech for pronunciation practice
 🎨 Clean and minimal user interface
 ⚡️ No installation needed — runs directly in your browser
+</h2>
