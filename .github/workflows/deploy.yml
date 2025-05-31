@@ -20,27 +20,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
-      - name: Debug API Key
-        run: |
-          echo "API Key length: ${#ELEVENLABS_API_KEY}"
-          echo "First 4 chars (masked): ${ELEVENLABS_API_KEY:0:4}..."
-        env:
-          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
-
-      - name: Inject API Key
-        run: |
-          ESCAPED_API_KEY=$(echo "${{ secrets.ELEVENLABS_API_KEY }}" | sed -e 's/[\/&]/\\&/g')
-          sed -i "s/PLACEHOLDER_API_KEY/$ESCAPED_API_KEY/g" index.html
-          echo "API key injected. Verifying replacement..."
-          grep -o "PLACEHOLDER_API_KEY" index.html || echo "Placeholder was replaced"
-        env:
-          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
-      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
