@@ -25,18 +25,10 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Create config file
-        run: |
-          # Create a new config.js file with proper exports
-          echo "export const CONFIG = {" > config.js
-          echo "  ELEVENLABS_API_KEY: process.env.VITE_ELEVENLABS_API_KEY," >> config.js
-          echo "  ELEVENLABS_VOICE_ID: 'rbFGGoDXFHtVghjHuS3E'" >> config.js
-          echo "};" >> config.js
-
       - name: Inject API Key
         run: |
           ESCAPED_API_KEY=$(echo "${{ secrets.ELEVENLABS_API_KEY }}" | sed -e 's/\\/\\\\/g' -e 's/\//\\\//g' -e 's/&/\\&/g')
-          sed -i 's|process.env.VITE_ELEVENLABS_API_KEY|"'$ESCAPED_API_KEY'"|g' config.js
+          sed -i "s/PLACEHOLDER_API_KEY/$ESCAPED_API_KEY/g" index.html
         env:
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
       
