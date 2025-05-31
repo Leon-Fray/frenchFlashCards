@@ -1,4 +1,4 @@
-#🇫🇷 frenchFlashCards
+🇫🇷 #frenchFlashCards
 
 A lightweight and simple web app built with HTML and JavaScript to help me study French — right in the browser!
 
