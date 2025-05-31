@@ -1,5 +1,3 @@
-import { CONFIG } from './config.js';
-
 let wordBank = [];
 let shuffledIndices = [];
 let currentIndex = 0;
@@ -119,12 +117,12 @@ window.speakFrench = async function speakFrench() {
     
     try {
         // Make request to ElevenLabs API
-        const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${CONFIG.ELEVENLABS_VOICE_ID}`, {
+        const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${window.CONFIG.ELEVENLABS_VOICE_ID}`, {
             method: 'POST',
             headers: {
                 'Accept': 'audio/mpeg',
                 'Content-Type': 'application/json',
-                'xi-api-key': CONFIG.ELEVENLABS_API_KEY
+                'xi-api-key': window.CONFIG.ELEVENLABS_API_KEY
             },
             body: JSON.stringify({
                 text: frenchText,
