@@ -27,9 +27,21 @@ jobs:
       with:
         node-version: '18'
     
+    - name: Debug - List files before
+      run: |
+        ls -la
+        echo "Current directory contents before replacement:"
+        cat config.template.js
+    
     - name: Replace API key in config
       run: |
-        sed "s/PLACEHOLDER_API_KEY/${{ secrets.ELEVENLABS_API_KEY }}/g" config.template.js > config.js
+        echo "Creating config.js from template..."
+        cp config.template.js config.js
+        sed -i "s/PLACEHOLDER_API_KEY/${{ secrets.ELEVENLABS_API_KEY }}/g" config.js
+        echo "Replacement complete. Verifying files:"
+        ls -la
+        echo "Config.js exists:"
+        test -f config.js && echo "Yes" || echo "No"
     
     - name: Setup Pages
       uses: actions/configure-pages@v4
