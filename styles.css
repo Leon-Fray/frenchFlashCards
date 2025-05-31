@@ -1,0 +1,112 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #546373;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+    .center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    }
+    .flashcard {
+    background: #546373;
+    width: 600px;
+    height: 360px;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    cursor: pointer;
+    perspective: 1000px;
+    margin-bottom: 60px;
+    position: relative;
+    transition: transform 0.6s;
+    }
+    .flashcard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    }
+    .flashcard-inner {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+    }
+    .flashcard.flipped .flashcard-inner {
+    transform: rotateY(180deg);
+    }
+    .front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    }
+    .front {
+    background:#6d7996;
+    color: black;
+    }
+    .back {
+    background: #6d7896;
+    color: black;
+    transform: rotateY(180deg);
+    }
+    .button-container {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    }
+    button {
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    }
+    button:hover {
+    background-color: #0056b3;
+    }
+    button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+    }
+    button:disabled:hover {
+    background-color: #6c757d;
+    }
+    .speak-btn {
+    background-color: #28a745;
+    }
+    .speak-btn:hover {
+    background-color: #218838;
+    }
+    .loading {
+    font-size: 24px;
+    color: white;
+    }
+    .error {
+    font-size: 18px;
+    color: #ff6b6b;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px;
+    }
