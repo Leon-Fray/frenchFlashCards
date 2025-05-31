@@ -100,6 +100,10 @@ window.nextCard = function nextCard() {
 window.speakFrench = async function speakFrench() {
     if (wordBank.length === 0 || shuffledIndices.length === 0) return;
     
+    // Debug logging
+    console.log('API Key length:', window.CONFIG.ELEVENLABS_API_KEY.length);
+    console.log('API Key starts with:', window.CONFIG.ELEVENLABS_API_KEY.substring(0, 4) + '...');
+    
     // Stop any currently playing audio
     if (currentAudio) {
         currentAudio.pause();
@@ -137,7 +141,8 @@ window.speakFrench = async function speakFrench() {
         });
         
         if (!response.ok) {
-            throw new Error(`ElevenLabs API error: ${response.status}`);
+            const errorText = await response.text();
+            throw new Error(`ElevenLabs API error: ${response.status}\nResponse: ${errorText}`);
         }
         
         // Convert response to audio blob
