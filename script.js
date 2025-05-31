@@ -1,3 +1,5 @@
+import { CONFIG } from './config.js';
+
 let wordBank = [];
 let shuffledIndices = [];
 let currentIndex = 0;
@@ -74,14 +76,15 @@ function showCurrentCard() {
     document.getElementById("back-text").textContent = wordBank[randomIndex].english;
 }
 
-function flipCard() {
+// Export functions used in HTML
+window.flipCard = function flipCard() {
     if (wordBank.length === 0) return;
     
     const card = document.getElementById("card");
     card.classList.toggle("flipped");
 }
 
-function nextCard() {
+window.nextCard = function nextCard() {
     if (wordBank.length === 0) return;
     
     // Move to next card in shuffled order
@@ -96,7 +99,7 @@ function nextCard() {
 }
 
 // Function to speak the current French word using ElevenLabs
-async function speakFrench() {
+window.speakFrench = async function speakFrench() {
     if (wordBank.length === 0 || shuffledIndices.length === 0) return;
     
     // Stop any currently playing audio
@@ -116,12 +119,12 @@ async function speakFrench() {
     
     try {
         // Make request to ElevenLabs API
-        const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${window.CONFIG.ELEVENLABS_VOICE_ID}`, {
+        const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${CONFIG.ELEVENLABS_VOICE_ID}`, {
             method: 'POST',
             headers: {
                 'Accept': 'audio/mpeg',
                 'Content-Type': 'application/json',
-                'xi-api-key': window.CONFIG.ELEVENLABS_API_KEY
+                'xi-api-key': CONFIG.ELEVENLABS_API_KEY
             },
             body: JSON.stringify({
                 text: frenchText,
